@@ -1,0 +1,25 @@
+﻿@page
+@model ScriptureMastery.Pages.Books.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="color:midnightblue;font-style:italic;">Details</h1>
+
+<div style="margin-bottom:10px;">
+    <h4>Book</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Book.BookName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.BookName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Book?.BookId" class="btn btn-success">Edit</a> |
+    <a asp-page="./Index" class="btn btn-primary">Back to List</a>
+</div>

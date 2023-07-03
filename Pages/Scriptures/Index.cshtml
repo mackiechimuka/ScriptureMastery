@@ -1,0 +1,86 @@
+﻿@page
+@model ScriptureMastery.Pages.Scriptures.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="font-style:italic; color:midnightblue;">Scriptures Notes</h1>
+
+<p>
+    <a asp-page="Create" class="btn" style="background-color:midnightblue;color:gold;">Create New</a>
+</p>
+<form style="margin-bottom:20px">
+    <div class="row">
+        <div class="col col-sm">
+            <input type="text" asp-for="SearchString" placeholder="Search Note" class="form-control form-control-lg" />
+        </div>
+        <div class="col col-sm">
+            <input type="text" asp-for="BookString" placeholder="Search Book" class="form-control form-control-lg" />
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px">
+        <div class="col col-sm">
+            <select asp-for="OrderBy" asp-items="Model.ListItems" class="form-control form-control-lg">
+                <option value="">Select Date</option>
+            </select>
+        </div>
+        <div class="col col-sm">
+            <input type="submit" value="Filter" class="btn " style="background-color:midnightblue;color:gold;" />
+        </div>
+    </div>
+
+
+</form>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered shadow p-3 mb-5 bg-white rounded">
+        <thead style="background-color:midnightblue;color:gold;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Scripture[0].Chapter)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Scripture[0].Verses)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Scripture[0].Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Scripture[0].CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Scripture[0].Books)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Scripture)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Chapter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Verses)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Books)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ScriptureId" class="btn btn-success">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ScriptureId" class="btn btn-primary">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ScriptureId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
